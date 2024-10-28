@@ -12,6 +12,7 @@ class Owner < ApplicationRecord
     breeds.any? ? breeds.pluck(:name).join(', ') : 'No breed'
   end
 
+  # Breed Descriptions
   def breed_descriptions
     breeds.any? ? breeds.pluck(:description) : []
   end
