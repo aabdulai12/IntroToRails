@@ -1,7 +1,7 @@
 class VetVisit < ApplicationRecord
   belongs_to :dog
   has_one :breed, through: :dog
-
+#validation added to the vet visit
   validates :visit_date, presence: true
   validates :description, presence: true
   validates :vet_clinic, presence: true
