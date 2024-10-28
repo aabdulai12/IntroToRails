@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_29_222846) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_27_174656) do
   create_table "animal_adoptions", force: :cascade do |t|
     t.string "animalid"
     t.string "intype"
@@ -40,15 +40,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_29_222846) do
     t.datetime "updated_at", null: false
     t.string "description"
     t.string "food_to_avoid"
+    t.string "dog_type"
   end
 
   create_table "dogs", force: :cascade do |t|
     t.string "name"
     t.integer "age"
     t.integer "breed_id", null: false
+    t.integer "owner_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "owner_id", null: false
     t.string "country"
     t.index ["breed_id"], name: "index_dogs_on_breed_id"
     t.index ["owner_id"], name: "index_dogs_on_owner_id"

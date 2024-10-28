@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :dogs
   resources :owners
   resources :vet_visits
+  resources :dogs, only: [:index, :show]
+
   resources :animal_adoptions, only: [:index, :show]
   resources :breeds, only: [:index, :show], path: '/breeds'
 

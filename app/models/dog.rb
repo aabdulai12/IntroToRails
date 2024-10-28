@@ -1,7 +1,6 @@
 class Dog < ApplicationRecord
-  belongs_to :dog
-  belongs_to :breed
-  belongs_to :owner
+  belongs_to :breed, optional: true  # Temporarily allow null breed_id for seeding
+  belongs_to :owner, optional: true  # Temporarily allow null owner_id for seeding
   has_many :vet_visits
 
   validates :name, presence: true, length: { minimum: 2 }
