@@ -1,7 +1,7 @@
 # app/models/breed.rb
 class Breed < ApplicationRecord
   has_many :dogs
-
+# validation Added in breed
   validates :name, presence: true, uniqueness: true
   validates :group, presence: true
   validates :section, presence: true
