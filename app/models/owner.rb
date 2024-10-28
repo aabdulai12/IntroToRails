@@ -8,6 +8,7 @@ class Owner < ApplicationRecord
     breeds.count
   end
 
+  # Breed Names
   def breed_names
     breeds.any? ? breeds.pluck(:name).join(', ') : 'No breed'
   end
