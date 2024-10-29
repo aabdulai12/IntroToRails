@@ -1,35 +1,31 @@
-<h1 class="text-center">Owners</h1>
+<div class="container">
+  <h1 class="text-center mb-4 display-4">Owners</h1>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Breed Count</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @owners.each do |owner| %>
+  <%= form_with url: owners_path, method: :get, local: true do %>
+    <div class="form-group">
+      <%= label_tag :search_term, "Search Owners" %>
+      <%= text_field_tag :search_term, params[:search_term], class: "form-control", placeholder: "Enter owner name" %>
+    </div>
+    <%= submit_tag "Search", class: "btn btn-primary" %>
+  <% end %>
+
+  <table class="table mt-4">
+    <thead>
       <tr>
-        <td><%= owner.name %></td>
-        <td><%= owner.breeds.count %></td>
-        <td><%= link_to 'Show Details', owner_path(owner), class: 'btn btn-primary' %></td>
+        <th>Name</th>
+        <th>Email</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-<%# ERB Conditional %>
+    </thead>
+    <tbody>
+      <% @owners.each do |owner| %>
+        <tr>
+          <td><%= owner.name %></td>
+          <td><%= owner.email %></td>
+          <td><%= link_to 'Details', owner_path(owner), class: "btn btn-info" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<% if @owners.any? { |owner| owner.breeds.count.positive? } %>
-  <div class="alert alert-success">
-    <p>***ERB Conditional*** At least one owner has breeds.</p>
-  </div>
-<% else %>
-  <div class="alert alert-info">
-    <p>No owners have breeds.</p>
-  </div>
-<% end %>
-
-<div class="text-center">
-  <%= paginate @owners, class: 'pagination justify-content-center' %>
+  <%= paginate @owners, class: "pagination justify-content-center" %>
 </div>
