@@ -1,36 +1,26 @@
 <div class="container">
   <h1 class="text-center mb-4 display-4">Dogs</h1>
 
+  <div class="row">
+    <% @dogs.each do |dog| %>
+      <div class="col-md-4 col-lg-3 mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title"><%= dog.name %></h5>
+            <p class="card-text">
+              <strong>Breed:</strong> <%= dog.breed.name %><br>
+              <strong>Group:</strong> <%= dog.breed.group %><br>
+              <strong>Section:</strong> <%= dog.breed.section %><br>
+              <strong>Country:</strong> <%= dog.breed.country %>
+            </p>
+            <%= link_to 'More Details', dog_path(dog), class: "btn btn-primary w-100 mt-3" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
 
-
-  <table class="table">
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Breed</th>
-        <th>Group</th>
-        <th>Section</th>
-        <th>Country</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @dogs.each do |dog| %>
-        <tr>
-          <td><%= dog.id %></td>
-          <td><%= dog.name %></td>
-          <td><%= dog.breed.name %></td>
-          <td><%= dog.breed.group %></td>
-          <td><%= dog.breed.section %></td>
-          <td><%= dog.breed.country %></td>
-          <td><%= link_to 'More Details', dog_path(dog), class: "btn btn-primary" %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-  <%= paginate @dogs, class: "pagination justify-content-center" %>
-
-  
+  <div class="pagination justify-content-center">
+    <%= paginate @dogs %>
+  </div>
 </div>
